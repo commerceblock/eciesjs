@@ -6,6 +6,7 @@ import { stringify } from "querystring";
 import { decrypt, encrypt } from "../src/index";
 import { PrivateKey, PublicKey } from "../src/keys";
 import { aesDecrypt, aesEncrypt, decodeHex } from "../src/utils";
+var Buffer = require('buffer/').Buffer  // note: the trailing slash is important!
 
 const PYTHON_BACKEND = "https://eciespy.herokuapp.com/";
 
@@ -21,16 +22,18 @@ describe("test encrypt and decrypt", () => {
   });
 
   it("tests aes decrypt with known key and TEXT", () => {
+
     const key = Buffer.from(
       decodeHex(
         "0000000000000000000000000000000000000000000000000000000000000000"
       )
     );
-    const nonce = Buffer.from(decodeHex("f3e1ba810d2c8900b11312b7c725565f"));
-    const tag = Buffer.from(decodeHex("ec3b71e17c11dbe31484da9450edcf6c"));
-    const encrypted = Buffer.from(decodeHex("02d2ffed93b856f148b9"));
 
+    const nonce = Buffer.from(decodeHex("01494453faa75e57259ccd06"));				         
+    const tag = Buffer.from(decodeHex("42f0d2835f600e30754582e6899ef9e3"));
+    const encrypted = Buffer.from(decodeHex("3b1a0409f738cd6f97e2"));
     const data = Buffer.concat([nonce, tag, encrypted]);
+
     const decrypted = aesDecrypt(key, data);
     expect(decrypted.toString()).to.be.equal(TEXT);
   });

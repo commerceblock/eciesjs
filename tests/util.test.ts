@@ -2,6 +2,7 @@ import secp256k1 from "secp256k1";
 
 import { expect } from "chai";
 import { decodeHex, getValidSecret, remove0x } from "../src/utils";
+var Buffer = require('buffer/').Buffer  // note: the trailing slash is important!
 
 describe("test string <-> buffer utils ", () => {
   it("should remove 0x", () => {

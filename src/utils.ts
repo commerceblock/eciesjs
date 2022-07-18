@@ -7,8 +7,10 @@ import {
   SECRET_KEY_LENGTH,
 } from "./consts";
 
+var Buffer = require('buffer/').Buffer  // note: the trailing slash is important!
+
 export function remove0x(hex: string): string {
-  if (hex.startsWith("0x") || hex.startsWith("0X")) {
+  if (new String(hex).startsWith("0x") || new String(hex).startsWith("0X")) {
     return hex.slice(2);
   }
   return hex;
