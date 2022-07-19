@@ -5,6 +5,8 @@ import { decodeHex } from "../utils";
 import { UNCOMPRESSED_PUBLIC_KEY_SIZE } from "../consts";
 import PrivateKey from "./PrivateKey";
 
+var Buffer = require('buffer/').Buffer  // note: the trailing slash is important!
+
 export default class PublicKey {
   public static fromHex(hex: string): PublicKey {
     const decoded = decodeHex(hex);

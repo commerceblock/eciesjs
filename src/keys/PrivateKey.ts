@@ -4,6 +4,8 @@ import secp256k1 from "secp256k1";
 import { decodeHex, getValidSecret } from "../utils";
 import PublicKey from "./PublicKey";
 
+var Buffer = require('buffer/').Buffer  // note: the trailing slash is important!
+
 export default class PrivateKey {
   public static fromHex(hex: string): PrivateKey {
     return new PrivateKey(decodeHex(hex));
